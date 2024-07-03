@@ -40,15 +40,14 @@ export default function connectToLog({getLogState, Component}) {
       }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       const {log} = this.props;
-      const nextLog = nextProps.log;
-      if (log !== nextLog) {
-        if (log) {
-          log.unsubscribe(this._update);
+      if (log !== prevProps.log) {
+        if (prevProps.log) {
+          prevProps.log.unsubscribe(this._update);
         }
-        if (nextLog) {
-          nextLog.subscribe(this._update);
+        if (log) {
+          log.subscribe(this._update);
         }
       }
     }

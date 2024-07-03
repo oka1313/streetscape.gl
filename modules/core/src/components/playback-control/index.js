@@ -73,15 +73,13 @@ class PlaybackControl extends PureComponent {
     timeScale: TIME_SCALES[getXVIZConfig().TIMESTAMP_FORMAT] || 1
   };
 
-  componentWillReceiveProps(nextProps) {
-    if ('isPlaying' in nextProps) {
-      this.setState({isPlaying: Boolean(nextProps.isPlaying)});
+  componentDidUpdate(prevProps) {
+    if ('isPlaying' in this.props && this.props.isPlaying !== prevProps.isPlaying) {
+      this.setState({isPlaying: Boolean(this.props.isPlaying)});
     }
-  }
 
-  componentDidUpdate(prevProps, prevState) {
     const {isPlaying} = this.state;
-    if (isPlaying && prevState.isPlaying !== isPlaying) {
+    if (isPlaying && prevProps.isPlaying !== isPlaying) {
       this._lastAnimationUpdate = Date.now();
       this._animationFrame = window.requestAnimationFrame(this._animate);
     }

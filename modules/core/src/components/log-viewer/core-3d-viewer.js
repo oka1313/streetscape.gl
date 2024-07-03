@@ -126,12 +126,12 @@ export default class Core3DViewer extends PureComponent {
 
   deckRef = React.createRef();
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.viewMode !== nextProps.viewMode) {
+  componentDidUpdate(prevProps) {
+    if (this.props.viewMode !== prevProps.viewMode) {
       const viewState = {
         ...this.props.viewState,
         ...DEFAULT_VIEW_STATE,
-        ...nextProps.viewMode.initialViewState
+        ...this.props.viewMode.initialViewState
       };
       // Reset offset
       const viewOffset = {
@@ -140,20 +140,20 @@ export default class Core3DViewer extends PureComponent {
         bearing: 0
       };
 
-      nextProps.onViewStateChange({viewState, viewOffset});
+      this.props.onViewStateChange({viewState, viewOffset});
       this.setState({
-        views: getViews(nextProps.viewMode, nextProps.viewOptions)
+        views: getViews(this.props.viewMode, this.props.viewOptions)
       });
     }
     if (
-      this.props.metadata !== nextProps.metadata ||
-      this.props.xvizStyles !== nextProps.xvizStyles
+      this.props.metadata !== prevProps.metadata ||
+      this.props.xvizStyles !== prevProps.xvizStyles
     ) {
       this.setState({
-        styleParser: this._getStyleParser(nextProps)
+        styleParser: this._getStyleParser(this.props)
       });
     }
-    if (this.props.frame !== nextProps.frame) {
+    if (this.props.frame !== prevProps.frame) {
       stats.get('frame-update').incrementCount();
     }
   }
