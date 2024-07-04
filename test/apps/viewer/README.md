@@ -4,7 +4,7 @@ This is an application to enable testing and validation of all the features of X
 Streetscape.gl
 
 Detailed documentation for this application is found in our
-[dev-docs/viewer-app.md](https://github.com/uber/streetscape.gl/tree/master/dev-docs/viewer-app.md)
+[dev-docs/viewer-app.md](https://github.com/oka1313/streetscape.gl/tree/master/dev-docs/viewer-app.md)
 
 ## Running the Viewer App
 

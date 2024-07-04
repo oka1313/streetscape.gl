@@ -142,7 +142,7 @@ export default class Footer extends PureComponent {
         </SectionContainer>
 
         <SectionContainer>
-          <GithubButton href="https://github.com/uber/streetscape.gl">
+          <GithubButton href="https://github.com/oka1313/streetscape.gl">
             <span className={'icon-github'} />
           </GithubButton>
           <FacebookShareButton url="https://avs.auto">

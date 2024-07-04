@@ -25,7 +25,7 @@ run the [example app](examples/get-started).
 
 ```bash
 # Clone streetscape.gl
-$ git clone https://github.com/uber/streetscape.gl.git
+$ git clone https://github.com/oka1313/streetscape.gl.git
 $ cd streetscape.gl
 
 # Install dependencies

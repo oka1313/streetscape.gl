@@ -13,7 +13,7 @@ To install use pip:
 
 For a development installation (requires npm),
 
-    $ git clone https://github.com/uber/streetscape.gl.git
+    $ git clone https://github.com/oka1313/streetscape.gl.git
     $ cd streetscape.gl/bindings/python/streetscape_avs
     $ pip install -e .
     $ jupyter nbextension install --py --symlink --sys-prefix streetscape_avs

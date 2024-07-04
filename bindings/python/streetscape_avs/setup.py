@@ -152,7 +152,7 @@ setup_args = {
 
     'author': 'Timothy Wojtaszek',
     'author_email': 'twojtasz@uber.com',
-    'url': 'https://github.com/uber/streetscape.gl',
+    'url': 'https://github.com/oka1313/streetscape.gl',
     'keywords': [
         'ipython',
         'jupyter',

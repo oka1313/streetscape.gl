@@ -5,7 +5,7 @@
   "version": "1.0.13",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uber/streetscape.gl.git"
+    "url": "https://github.com/oka1313/streetscape.gl.git"
   },
   "main": "dist/es5/index.js",
   "module": "dist/esm/index.js",

@@ -31,4 +31,4 @@ export const FRAMEWORK_LINKS = {
 export const FRAMEWORK_NAME = 'AVS';
 
 export const XVIZ_GITHUB_URL = 'https://github.com/uber/xviz';
-export const STREETSCAPE_GITHUB_URL = 'https://github.com/uber/streetscape.gl';
+export const STREETSCAPE_GITHUB_URL = 'https://github.com/oka1313/streetscape.gl';

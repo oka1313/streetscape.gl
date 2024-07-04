@@ -11,6 +11,6 @@ environment.
 
 ## Usage
 
-Install [streetscape_avs](https://github.com/uber/streetscape.gl):
+Install [streetscape_avs](https://github.com/oka1313/streetscape.gl):
 
     $ pip install streetscape_avs

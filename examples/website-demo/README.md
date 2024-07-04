@@ -1,6 +1,6 @@
 # Start Website Demo
 
-The [Website Demo](https://github.com/uber/streetscape.gl/tree/master/examples/website-demo) is a
+The [Website Demo](https://github.com/oka1313/streetscape.gl/tree/master/examples/website-demo) is a
 standalone app that provides a way to play around with the example dataset (kitti, nutonomy).
 
 ### Use example dataset from local
@@ -39,7 +39,7 @@ After `xviz-data` is downloaded to local and `webpack.config.js` is correctly se
 
 ```bash
 # clone the repo
-git clone https://github.com/uber/streetscape.gl.git
+git clone https://github.com/oka1313/streetscape.gl.git
 cd streetscape.gl/examples/website-demo
 # install dependencies
 yarn
