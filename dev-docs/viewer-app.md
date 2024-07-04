@@ -1,7 +1,7 @@
 # Developer Viewer Application
 
 This application has additional features beyond the
-[get-started](https://github.com/uber/streetscape.gl/tree/master/docs/get-started/starter-kit.md)
+[get-started](https://github.com/oka1313/streetscape.gl/tree/master/docs/get-started/starter-kit.md)
 that are detailed here. Instructions and features in the get-started application will work with the
 viewer application.
 

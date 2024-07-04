@@ -1,6 +1,6 @@
 # Starter Kit
 
-The [starter kit](https://github.com/uber/streetscape.gl/tree/master/examples/get-started) is a
+The [starter kit](https://github.com/oka1313/streetscape.gl/tree/master/examples/get-started) is a
 minimal example that uses the components from streetscape.gl to display a XVIZ log. The application
 demonstrates how to connect to an XVIZ source and pipe the data to the streetscape.gl components.
 
@@ -8,7 +8,7 @@ demonstrates how to connect to an XVIZ source and pipe the data to the streetsca
 
 ```bash
 # clone the repo
-git clone https://github.com/uber/streetscape.gl.git
+git clone https://github.com/oka1313/streetscape.gl.git
 cd streetscape.gl/examples/get-started
 # install dependencies
 yarn
@@ -27,7 +27,7 @@ This example loads an XVIZ log extracted from the [KITTI](http://www.cvlibs.net/
 dataset. By default, the data is loaded from a remote URL using the
 [XVIZFileLoader](/docs/api-reference/xviz-file-loader.md). You can change the URL to point to your
 own files by tweaking the options in
-[log-from-file.js](https://github.com/uber/streetscape.gl/tree/master/examples/get-started/src/log-from-file.js).
+[log-from-file.js](https://github.com/oka1313/streetscape.gl/tree/master/examples/get-started/src/log-from-file.js).
 
 You can also use this application to stream XVIZ data from a server. To do this:
 
@@ -37,7 +37,7 @@ You can also use this application to stream XVIZ data from a server. To do this:
 - In the get-started example directory, run `yarn start-streaming`.
 
 You can change the streaming options in
-[log-from-stream.js](https://github.com/uber/streetscape.gl/tree/master/examples/get-started/src/log-from-stream.js).
+[log-from-stream.js](https://github.com/oka1313/streetscape.gl/tree/master/examples/get-started/src/log-from-stream.js).
 
 ## Application Controls
 
@@ -54,7 +54,7 @@ You can change the streaming options in
 ## Application Walk-through
 
 This section will cover some of the key parts in the main application source code in
-[app.js](https://github.com/uber/streetscape.gl/tree/master/examples/get-started/src/app.js).
+[app.js](https://github.com/oka1313/streetscape.gl/tree/master/examples/get-started/src/app.js).
 
 ### XVIZ Configuration
 
@@ -80,7 +80,7 @@ componentDidMount() {
 The application uses either the [XVIZFileLoader](/docs/api-reference/xviz-file-loader.md) or the
 [XVIZStreamLoader](/docs/api-reference/xviz-stream-loader.md) to obtain XVIZ data. The default
 connection parameters are defined in in
-[constants.js](https://github.com/uber/streetscape.gl/tree/master/examples/get-started/src/constants.js).
+[constants.js](https://github.com/oka1313/streetscape.gl/tree/master/examples/get-started/src/constants.js).
 
 ### Log Playback Components
 
