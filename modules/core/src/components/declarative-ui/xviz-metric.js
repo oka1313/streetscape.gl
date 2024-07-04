@@ -80,14 +80,14 @@ class XVIZMetricComponent extends PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      this.props.streams !== nextProps.streams ||
-      this.props.streamsMetadata !== nextProps.streamsMetadata ||
-      this.props.logStreams !== nextProps.logStreams
+      this.props.streams !== prevProps.streams ||
+      this.props.streamsMetadata !== prevProps.streamsMetadata ||
+      this.props.logStreams !== prevProps.logStreams
     ) {
       this.setState({
-        timeSeries: this._getTimeSeries(nextProps)
+        timeSeries: this._getTimeSeries(this.props)
       });
     }
   }

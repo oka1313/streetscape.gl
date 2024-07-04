@@ -53,10 +53,10 @@ export default class ObjectLabelsOverlay extends PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {frame} = nextProps;
+  componentDidUpdate(prevProps) {
+    const {frame} = this.props;
 
-    if (frame && frame !== this.props.frame) {
+    if (frame && frame !== prevProps.frame) {
       this.setState({
         coordinateProps: {}
       });

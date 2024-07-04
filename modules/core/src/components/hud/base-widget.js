@@ -55,13 +55,13 @@ class BaseWidget extends PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.streamNames !== this.props.streamNames ||
-      nextProps.streamsMetadata !== this.props.streamsMetadata ||
-      nextProps.frame !== this.props.frame
+      prevProps.streamNames !== this.props.streamNames ||
+      prevProps.streamsMetadata !== this.props.streamsMetadata ||
+      prevProps.frame !== this.props.frame
     ) {
-      this.setState({streams: this._extractStreams(nextProps)});
+      this.setState({streams: this._extractStreams(this.props)});
     }
   }
 
