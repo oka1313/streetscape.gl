@@ -38,13 +38,13 @@ export default class CameraPanel extends PureComponent {
     }
   };
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const {panelState} = this.state;
-    if (this.props.videoAspectRatio !== nextProps.videoAspectRatio) {
+    if (this.props.videoAspectRatio !== prevProps.videoAspectRatio) {
       this.setState({
         panelState: {
           ...panelState,
-          height: panelState.width / nextProps.videoAspectRatio + TITLE_HEIGHT
+          height: panelState.width / this.props.videoAspectRatio + TITLE_HEIGHT
         }
       });
     }

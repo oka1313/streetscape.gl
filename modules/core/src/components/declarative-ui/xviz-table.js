@@ -62,9 +62,9 @@ class XVIZTableComponent extends PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.columns !== this.props.columns || nextProps.nodes !== this.props.nodes) {
-      this.setState(this._formatData(nextProps));
+  componentDidUpdate(prevProps) {
+    if (prevProps.columns !== this.props.columns || prevProps.nodes !== this.props.nodes) {
+      this.setState(this._formatData(this.props));
     }
   }
 

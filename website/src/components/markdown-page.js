@@ -132,15 +132,12 @@ export default class MarkdownPage extends PureComponent {
     this._loadPage(this.props.page);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.page !== this.props.page) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.page !== this.props.page) {
       this._anchorPositions = null;
       this._currentSection = '.';
-      this._loadPage(nextProps.page);
+      this._loadPage(this.props.page);
     }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
     if (prevState.html !== this.state.html || prevProps.location !== this.props.location) {
       this._jumpTo(this.props.location);
     }

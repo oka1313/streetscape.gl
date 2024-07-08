@@ -71,7 +71,7 @@ export default class ImageSequence extends PureComponent {
     this._renderFrame();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       this.props.currentTime !== prevProps.currentTime ||
       this.props.src !== prevProps.src

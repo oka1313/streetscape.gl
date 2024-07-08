@@ -69,12 +69,12 @@ class BaseComponent extends PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      this.props.streamsMetadata !== nextProps.streamsMetadata ||
-      this.props.cameras !== nextProps.cameras
+      this.props.streamsMetadata !== prevProps.streamsMetadata ||
+      this.props.cameras !== prevProps.cameras
     ) {
-      this.setState(this._getStreamNames(nextProps));
+      this.setState(this._getStreamNames(this.props));
     }
   }
 
