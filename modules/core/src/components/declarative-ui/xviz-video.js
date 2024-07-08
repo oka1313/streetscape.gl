@@ -69,13 +69,17 @@ class BaseComponent extends PureComponent {
     };
   }
 
-  componentDidUpdate(prevProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     if (
-      this.props.streamsMetadata !== prevProps.streamsMetadata ||
-      this.props.cameras !== prevProps.cameras
+      nextProps.streamsMetadata !== prevState.streamsMetadata ||
+      nextProps.cameras !== prevState.cameras
     ) {
-      this.setState(this._getStreamNames(this.props));
+      return {
+        ...prevState,
+        ...BaseComponent._getStreamNames(nextProps)
+      };
     }
+    return null;
   }
 
   _getStreamNames({streamsMetadata, cameras}) {

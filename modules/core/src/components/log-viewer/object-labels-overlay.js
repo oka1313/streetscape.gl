@@ -46,21 +46,21 @@ export default class ObjectLabelsOverlay extends PureComponent {
     style: {}
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.frame !== prevState.frame) {
+      return {
+        coordinateProps: {},
+        frame: nextProps.frame
+      };
+    }
+    return null;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       coordinateProps: {}
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    const {frame} = this.props;
-
-    if (frame && frame !== prevProps.frame) {
-      this.setState({
-        coordinateProps: {}
-      });
-    }
   }
 
   _getCoordinateProps(streamName) {

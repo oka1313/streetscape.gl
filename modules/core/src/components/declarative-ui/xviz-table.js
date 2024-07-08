@@ -64,8 +64,12 @@ class XVIZTableComponent extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (prevProps.columns !== this.props.columns || prevProps.nodes !== this.props.nodes) {
-      this.setState(this._formatData(this.props));
+      this._updateTableData(this.props);
     }
+  }
+
+  _updateTableData(props) {
+    this.setState(this._formatData(props));
   }
 
   _formatData({columns, nodes, displayObjectId}) {

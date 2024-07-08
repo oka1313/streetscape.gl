@@ -86,10 +86,14 @@ class XVIZMetricComponent extends PureComponent {
       this.props.streamsMetadata !== prevProps.streamsMetadata ||
       this.props.logStreams !== prevProps.logStreams
     ) {
-      this.setState({
-        timeSeries: this._getTimeSeries(this.props)
-      });
+      this._updateTimeSeries(this.props);
     }
+  }
+
+  _updateTimeSeries(props) {
+    this.setState({
+      timeSeries: this._getTimeSeries(props)
+    });
   }
 
   _getTimeSeries(props) {

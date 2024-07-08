@@ -22,7 +22,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Form, CheckBox, evaluateStyle} from '@streetscape.gl/monochrome';
 import styled from '@emotion/styled';
-
 import connectToLog from './connect';
 
 const Badge = styled.div(props => ({
@@ -162,25 +161,25 @@ class StreamSettingsPanel extends PureComponent {
     onSettingsChange: () => {}
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let {data, values} = prevState;
+
+    if (nextProps.streamsMetadata !== prevState.streamsMetadata) {
+      data = createFormData(nextProps.streamsMetadata, nextProps);
+      values = null;
+    }
+    if (nextProps.streamSettings !== prevState.streamSettings) {
+      values = settingsToFormValues(data, nextProps.streamSettings);
+    }
+    return {data, values};
+  }
+
   constructor(props) {
     super(props);
 
     const data = createFormData(props.streamsMetadata, props);
     const values = settingsToFormValues(data, props.streamSettings);
     this.state = {data, values};
-  }
-
-  componentDidUpdate(prevProps) {
-    let {data, values} = this.state;
-
-    if (prevProps.streamsMetadata !== this.props.streamsMetadata) {
-      data = createFormData(this.props.streamsMetadata, this.props);
-      values = null;
-    }
-    if (prevProps.streamSettings !== this.props.streamSettings) {
-      values = settingsToFormValues(data, this.props.streamSettings);
-    }
-    this.setState({data, values});
   }
 
   _onValuesChange = newValues => {

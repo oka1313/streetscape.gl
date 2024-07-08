@@ -72,13 +72,8 @@ export default class ImageSequence extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.currentTime !== prevProps.currentTime ||
-      this.props.src !== prevProps.src
-    ) {
-      this.setState({
-        ...this._getCurrentFrames(this.props)
-      });
+    if (this.props.currentTime !== prevProps.currentTime || this.props.src !== prevProps.src) {
+      this._updateFrames();
     }
 
     if (
@@ -88,6 +83,16 @@ export default class ImageSequence extends PureComponent {
       this.state.height !== prevState.height
     ) {
       this._renderFrame();
+    }
+  }
+
+  _updateFrames() {
+    const newFrames = this._getCurrentFrames(this.props);
+    if (
+      newFrames.currentFrameImage !== this.state.currentFrameImage ||
+      newFrames.currentFrameImagePending !== this.state.currentFrameImagePending
+    ) {
+      this.setState(newFrames);
     }
   }
 

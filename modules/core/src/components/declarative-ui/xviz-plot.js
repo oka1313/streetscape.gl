@@ -31,6 +31,98 @@ const GET_Y = d => d[1];
 const DATA_LOADING = {isLoading: true};
 
 class XVIZPlotComponent extends PureComponent {
+  static _getUpdatedDependentVariables(props, independentVariable, prevState) {
+    const updatedDependentVariable = {};
+    for (const streamName of props.dependentVariables) {
+      const variable = props.variables[streamName];
+      if (
+        independentVariable !== prevState.independentVariable ||
+        !prevState.variables ||
+        prevState.variables[streamName] !== variable
+      ) {
+        updatedDependentVariable[streamName] = XVIZPlotComponent._formatDependentVariable(
+          independentVariable,
+          variable
+        );
+      }
+    }
+    return updatedDependentVariable;
+  }
+
+  static _getNewMissingStreams(updatedDependentVariable) {
+    return Object.keys(updatedDependentVariable).filter(dv => !updatedDependentVariable[dv]);
+  }
+
+  static _shouldUpdateState(
+    prevState,
+    independentVariable,
+    updatedDependentVariable,
+    newMissingStreams
+  ) {
+    return (
+      prevState.independentVariable !== independentVariable ||
+      JSON.stringify(prevState.dependentVariables) !== JSON.stringify(updatedDependentVariable) ||
+      JSON.stringify(prevState.missingStreams) !== JSON.stringify(newMissingStreams)
+    );
+  }
+
+  static _formatDependentVariable(independentVariable, variable) {
+    if (!variable || !independentVariable || independentVariable.length === 0) {
+      return null;
+    }
+    const x = independentVariable[0].values;
+
+    return variable.map(({id, values}) => {
+      // TypeArray.map() cannot return an array as the result so construct
+      // a new Array explicitly
+      const valueTuple = new Array(values.length);
+      values.forEach((v, k) => (valueTuple[k] = [x[k], v]));
+
+      return {
+        id,
+        values: valueTuple
+      };
+    });
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!nextProps.variables) {
+      if (prevState.independentVariable !== null) {
+        return {independentVariable: null};
+      }
+      return null;
+    }
+
+    const independentVariable = nextProps.variables[nextProps.independentVariable];
+    const updatedDependentVariable = XVIZPlotComponent._getUpdatedDependentVariables(
+      nextProps,
+      independentVariable,
+      prevState
+    );
+
+    const independentVariableChanged = independentVariable !== prevState.independentVariable;
+    const dependentVariablesChanged = Object.keys(updatedDependentVariable).length > 0;
+
+    if (independentVariableChanged || dependentVariablesChanged) {
+      const newMissingStreams = XVIZPlotComponent._getNewMissingStreams(updatedDependentVariable);
+      if (
+        XVIZPlotComponent._shouldUpdateState(
+          prevState,
+          independentVariable,
+          updatedDependentVariable,
+          newMissingStreams
+        )
+      ) {
+        return {
+          independentVariable,
+          dependentVariables: {...prevState.dependentVariables, ...updatedDependentVariable},
+          missingStreams: newMissingStreams
+        };
+      }
+    }
+    return null;
+  }
+
   static propTypes = {
     // User configuration
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -77,46 +169,6 @@ class XVIZPlotComponent extends PureComponent {
     missingStreams: this.props.dependentVariables
   };
 
-  componentDidUpdate(prevProps) {
-    if (!this.props.variables) {
-      this.setState({independentVariable: null});
-      return;
-    }
-
-    const independentVariable = this.props.variables[this.props.independentVariable];
-    let independentVariableChanged = false;
-    let dependentVariablesChanged = false;
-    const updatedDependentVariable = {};
-
-    if (independentVariable !== this.state.independentVariable) {
-      independentVariableChanged = true;
-    }
-    for (const streamName of this.props.dependentVariables) {
-      const variable = this.props.variables[streamName];
-      if (
-        independentVariableChanged ||
-        !prevProps.variables ||
-        prevProps.variables[streamName] !== variable
-      ) {
-        updatedDependentVariable[streamName] = this._formatDependentVariable(
-          independentVariable,
-          variable
-        );
-        dependentVariablesChanged = true;
-      }
-    }
-
-    if (independentVariableChanged || dependentVariablesChanged) {
-      this.setState({
-        independentVariable,
-        dependentVariables: {...this.state.dependentVariables, ...updatedDependentVariable},
-        missingStreams: Object.keys(updatedDependentVariable).filter(
-          dv => !updatedDependentVariable[dv]
-        )
-      });
-    }
-  }
-
   _onClick = x => {
     const {onClick, log} = this.props;
     if (onClick) {
@@ -128,29 +180,10 @@ class XVIZPlotComponent extends PureComponent {
 
   _formatTitle = streamName => {
     // TODO - use information from metadata
-    // const {metadata} = this.props;
+    // const { metadata } = this.props;
     // const streamInfo = metadata && metadata.streams[streamName];
     return streamName;
   };
-
-  _formatDependentVariable(independentVariable, variable) {
-    if (!variable || !independentVariable || independentVariable.length === 0) {
-      return null;
-    }
-    const x = independentVariable[0].values;
-
-    return variable.map(({id, values}) => {
-      // TypeArray.map() cannot return an array as the result so construct
-      // a new Array explicitly
-      const valueTuple = new Array(values.length);
-      values.forEach((v, k) => (valueTuple[k] = [x[k], v]));
-
-      return {
-        id,
-        values: valueTuple
-      };
-    });
-  }
 
   _extractDataProps() {
     const {independentVariable, dependentVariables} = this.state;
