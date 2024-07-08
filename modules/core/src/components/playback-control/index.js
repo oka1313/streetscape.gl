@@ -75,7 +75,7 @@ class PlaybackControl extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if ('isPlaying' in this.props && this.props.isPlaying !== prevProps.isPlaying) {
-      this.setState({isPlaying: Boolean(this.props.isPlaying)});
+      this._updatePlayingState(this.props.isPlaying);
     }
 
     const {isPlaying} = this.state;
@@ -88,6 +88,12 @@ class PlaybackControl extends PureComponent {
   componentWillUnmount() {
     if (this._animationFrame) {
       window.cancelAnimationFrame(this._animationFrame);
+    }
+  }
+
+  _updatePlayingState(isPlaying) {
+    if (this.state.isPlaying !== isPlaying) {
+      this.setState({isPlaying: Boolean(isPlaying)});
     }
   }
 

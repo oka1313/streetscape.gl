@@ -3073,6 +3073,40 @@
     react-modal "^3.6.1"
     react-treebeard "3.1.0"
 
+"@streetscape.gl/core@file:modules/core":
+  version "1.0.13"
+  dependencies:
+    "@deck.gl/core" "^8.1.5"
+    "@deck.gl/layers" "^8.1.5"
+    "@deck.gl/mesh-layers" "^8.1.5"
+    "@deck.gl/react" "^8.1.5"
+    "@emotion/core" "^10.0.22"
+    "@emotion/styled" "^10.0.23"
+    "@streetscape.gl/monochrome" "file:modules/monochrome"
+    "@xviz/parser" "^1.0.13"
+    lodash.merge "^4.6.1"
+    math.gl "^3.0.0"
+    promise-retry "^1.1.1"
+    prop-types "^15.6.2"
+    react-map-gl "~5.2.0"
+    reselect "^3.0.0"
+
+"@streetscape.gl/layers@file:modules/layers":
+  version "1.0.13"
+
+"@streetscape.gl/monochrome@file:modules/monochrome":
+  version "1.0.13"
+  dependencies:
+    "@emotion/core" "^10.0.0"
+    "@emotion/styled" "^10.0.0"
+    baseui "^8.5.1"
+    debounce "^1.1.0"
+    popper.js "^1.11.1"
+    prop-types "^15.5.10"
+    react-vis "^1.11.2"
+    styletron-engine-atomic "^1.4.0"
+    styletron-react "^5.2.0"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"

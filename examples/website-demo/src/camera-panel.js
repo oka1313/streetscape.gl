@@ -39,6 +39,10 @@ export default class CameraPanel extends PureComponent {
   };
 
   componentDidUpdate(prevProps) {
+    this._updatePanelHeightIfNeeded(prevProps);
+  }
+
+  _updatePanelHeightIfNeeded(prevProps) {
     const {panelState} = this.state;
     if (this.props.videoAspectRatio !== prevProps.videoAspectRatio) {
       this.setState({

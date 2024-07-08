@@ -21,6 +21,7 @@
 /* eslint-disable no-process-env */
 const {resolve} = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const BABEL_CONFIG = {
   presets: ['@babel/preset-env', '@babel/preset-react'],
@@ -54,7 +55,10 @@ const CONFIG = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.EnvironmentPlugin(['MapboxAccessToken'])
+    new Dotenv({
+      path: resolve(__dirname, '.env'),
+      systemvars: true
+    })
   ]
 };
 

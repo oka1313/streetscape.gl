@@ -91,7 +91,7 @@ class MetadataPanel extends PureComponent {
                 </a>
               </p>
               <p>{metadata.log_info.source.author}</p>
-              <p dangerouslySetInnerHTML={{__html: metadata.log_info.source.copyright}} />
+              <p>{metadata.log_info.source.copyright}</p>
             </div>
           </div>
         )}

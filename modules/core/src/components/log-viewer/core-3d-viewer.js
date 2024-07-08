@@ -124,8 +124,6 @@ export default class Core3DViewer extends PureComponent {
     this.getViewState = memoize(this._getViewState);
   }
 
-  deckRef = React.createRef();
-
   componentDidUpdate(prevProps) {
     if (this.props.viewMode !== prevProps.viewMode) {
       const viewState = {
@@ -141,22 +139,27 @@ export default class Core3DViewer extends PureComponent {
       };
 
       this.props.onViewStateChange({viewState, viewOffset});
-      this.setState({
-        views: getViews(this.props.viewMode, this.props.viewOptions)
-      });
+      this._updateViews(this.props.viewMode, this.props.viewOptions);
     }
     if (
       this.props.metadata !== prevProps.metadata ||
       this.props.xvizStyles !== prevProps.xvizStyles
     ) {
-      this.setState({
-        styleParser: this._getStyleParser(this.props)
-      });
+      this._updateStyleParser(this.props);
     }
     if (this.props.frame !== prevProps.frame) {
       stats.get('frame-update').incrementCount();
     }
   }
+
+  _updateStyleParser(props) {
+    const styleParser = this._getStyleParser(props);
+    if (JSON.stringify(styleParser) !== JSON.stringify(this.state.styleParser)) {
+      this.setState({styleParser});
+    }
+  }
+
+  deckRef = React.createRef();
 
   _onMapLoad = evt => {
     const map = evt.target;

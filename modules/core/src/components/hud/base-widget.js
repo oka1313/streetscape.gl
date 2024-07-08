@@ -61,7 +61,14 @@ class BaseWidget extends PureComponent {
       prevProps.streamsMetadata !== this.props.streamsMetadata ||
       prevProps.frame !== this.props.frame
     ) {
-      this.setState({streams: this._extractStreams(this.props)});
+      this._updateStreams(this.props);
+    }
+  }
+
+  _updateStreams(props) {
+    const newStreams = this._extractStreams(props);
+    if (JSON.stringify(newStreams) !== JSON.stringify(this.state.streams)) {
+      this.setState({streams: newStreams});
     }
   }
 
