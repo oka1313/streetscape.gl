@@ -14,7 +14,7 @@
   "dependencies": {
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "streetscape.gl": "file:/home/dami/workspace/0708/streetscape.gl/modules/main"
+    "streetscape.gl": "file:../modules/main"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
