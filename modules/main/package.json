@@ -16,7 +16,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@streetscape.gl/core": "file:/home/dami/workspace/0708/streetscape.gl/modules/core",
-    "@streetscape.gl/layers": "file:/home/dami/workspace/0708/streetscape.gl/modules/layers"
+    "@streetscape.gl/core": "file:../core",
+    "@streetscape.gl/layers": "file:../layers"
   }
 }
